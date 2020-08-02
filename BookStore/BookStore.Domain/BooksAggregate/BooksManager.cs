@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using BookStore.Domain.BooksAggregate.Specifications;
 using BookStore.Domain.Specifications;
@@ -18,8 +19,17 @@ namespace BookStore.Domain.BooksAggregate
         {
             ISpecification<Book> genreSpecification = new GenreSpecification<Book>("Horror");
             var horrorBooks = _books.FindAll(b => genreSpecification.IsSatisfiedBy(b));
-
-
+            return horrorBooks.AsReadOnly();
         }
+
+
+        public IEnumerable<Book> GetPremiumBooks()
+        {
+             ISpecification<Book> genreSpecification = new GenreSpecification<Book>("Horror");
+            var horrorBooks = _books.FindAll(b => genreSpecification.IsSatisfiedBy(b));
+            return horrorBooks.AsReadOnly();
+        }
+
+
     }
 }
