@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BookStore.Domain.BooksAggregate.Specifications;
-using BookStore.Domain.Specifications;
+﻿using System.Collections.Generic;
 
 namespace BookStore.Domain.BooksAggregate
 {
@@ -15,20 +10,7 @@ namespace BookStore.Domain.BooksAggregate
             _books = new List<Book>();
         }
 
-        public IEnumerable<Book> GetHorrorBooks()
-        {
-            ISpecification<Book> genreSpecification = new GenreSpecification<Book>("Horror");
-            var horrorBooks = _books.FindAll(b => genreSpecification.IsSatisfiedBy(b));
-            return horrorBooks.AsReadOnly();
-        }
-
-
-        public IEnumerable<Book> GetPremiumBooks()
-        {
-             ISpecification<Book> genreSpecification = new GenreSpecification<Book>("Horror");
-            var horrorBooks = _books.FindAll(b => genreSpecification.IsSatisfiedBy(b));
-            return horrorBooks.AsReadOnly();
-        }
+       
 
 
     }

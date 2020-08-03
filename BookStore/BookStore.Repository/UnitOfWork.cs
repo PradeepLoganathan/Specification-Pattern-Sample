@@ -2,6 +2,7 @@
 using BookStore.Domain;
 using BookStore.Domain.BooksAggregate;
 using BookStore.Domain.CatalogueAggregate;
+using BookStore.Repository.Books;
 
 namespace BookStore.Repository
 {

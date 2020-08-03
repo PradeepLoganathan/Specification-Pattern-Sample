@@ -1,6 +1,8 @@
-﻿using BookStore.Domain.Specifications;
+﻿using BookStore.Domain.BooksAggregate;
+using BookStore.Repository.Specifications;
 
-namespace BookStore.Domain.BooksAggregate.Specifications
+
+namespace BookStore.Repository.Books.Specifications
 {
     public class GenreSpecification<T> : GenericSpecification<T>
     {

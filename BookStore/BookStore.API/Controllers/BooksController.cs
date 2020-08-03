@@ -50,7 +50,7 @@ namespace BookStore.API.Controllers
                 Genre = "Technology",
                 Author = "Charles Petzold",
                 Title = "Programming Windows 5th Edition",
-                Price = 30,
+                Price = 30.00,
                 Publisher = "Microsoft Press"
             };
 

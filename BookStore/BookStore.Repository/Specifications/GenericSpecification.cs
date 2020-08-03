@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookStore.Domain.Specifications
+namespace BookStore.Repository.Specifications
 {
     public abstract class GenericSpecification<T>: ISpecification<T>
     {

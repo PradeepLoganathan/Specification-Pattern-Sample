@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BookStore.Domain.Specifications
+﻿namespace BookStore.Repository.Specifications
 {
     public interface ISpecification<T>
     {

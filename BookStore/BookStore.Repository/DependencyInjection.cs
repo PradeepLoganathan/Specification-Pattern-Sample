@@ -1,6 +1,7 @@
 ﻿using BookStore.Domain;
 using BookStore.Domain.BooksAggregate;
 using BookStore.Domain.CatalogueAggregate;
+using BookStore.Repository.Books;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
