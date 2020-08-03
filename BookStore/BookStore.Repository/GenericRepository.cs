@@ -19,7 +19,7 @@ namespace BookStore.Repository
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IReadOnlyList<T>> GetAll()
         {
             return await _context.Set<T>().ToListAsync();
         }

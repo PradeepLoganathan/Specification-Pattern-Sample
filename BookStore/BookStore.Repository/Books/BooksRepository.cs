@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using BookStore.Domain.BooksAggregate;
 using BookStore.Repository.Books.Specifications;
 using BookStore.Repository.Specifications;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Repository.Books
 {
@@ -12,24 +15,24 @@ namespace BookStore.Repository.Books
         {
         }
 
-        public IEnumerable<Book> GetBooksByGenre(string Genre)
+        public async Task<IReadOnlyList<Book>> GetBooksByGenre(string genre)
         {
-            return _context.Books.Where(x => x.Genre == Genre);
+            ISpecification<Book> genreSpecification = new GenreSpecification(genre);
+            var books =  _context.Books.Where(genreSpecification.ToExpression()).ToList();
+            return books;
         }
 
-        public IEnumerable<Book> GetHorrorBooks()
+        public async Task<IReadOnlyList<Book>> GetPremiumBooks()
         {
-            ISpecification<Book> genreSpecification = new GenreSpecification<Book>("Horror");
-            var horrorBooks = _context.Books.Where(b => genreSpecification.IsSatisfiedBy(b));
-            return horrorBooks;
+            ISpecification<Book> priceSpecification = new PriceSpecification(200);
+            var premiumBooks = _context.Books.Where(b => priceSpecification.IsSatisfiedBy(b));
+            return await premiumBooks.ToListAsync();
         }
-
-        public IEnumerable<Book> GetPremiumBooks()
+        public async Task<IReadOnlyList<Book>> GetLatestBooks()
         {
-            ISpecification<Book> genreSpecification = new GenreSpecification<Book>("Horror");
-            var horrorBooks = _context.Books.Where(b => genreSpecification.IsSatisfiedBy(b));
-            return horrorBooks;
+            ISpecification<Book> priceSpecification = new PriceSpecification(300);
+            var horrorBooks = _context.Books.Where(b => priceSpecification.IsSatisfiedBy(b));
+            return await horrorBooks.ToListAsync();
         }
-
     }
 }

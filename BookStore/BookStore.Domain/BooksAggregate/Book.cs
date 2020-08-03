@@ -1,4 +1,6 @@
-﻿namespace BookStore.Domain.BooksAggregate
+﻿using System;
+
+namespace BookStore.Domain.BooksAggregate
 {
     public class Book
     {
@@ -7,6 +9,7 @@
         public string Author { get; set; }
         public string Publisher { get; set; }
         public string Genre { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
+        public DateTime PublishDate { get; set; }
     }
 }

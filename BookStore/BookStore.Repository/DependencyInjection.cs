@@ -16,7 +16,7 @@ namespace BookStore.Repository
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             
             services.AddDbContext<BookStoreDbContext>(opt => opt
-                .UseSqlServer("Server=localhost,1433; Database=BooksDB;User Id=sa; Password=password_01;"));
+                .UseSqlServer("Server=localhost,1433; Database=BooksDB;User Id=sa; Password=*Password@123*;"));
             return services;
         }
     }

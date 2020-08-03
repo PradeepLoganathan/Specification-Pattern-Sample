@@ -1,10 +1,11 @@
 ﻿using BookStore.Domain.BooksAggregate;
 using BookStore.Repository.Specifications;
-
+using System;
+using System.Linq.Expressions;
 
 namespace BookStore.Repository.Books.Specifications
 {
-    public class GenreSpecification<T> : GenericSpecification<T>
+    public class GenreSpecification : Specification<Book>
     {
         private readonly string _genre;
         public GenreSpecification(string genre)
@@ -12,9 +13,9 @@ namespace BookStore.Repository.Books.Specifications
             _genre = genre;
         }
 
-        public override bool IsSatisfiedBy(T entity)
+        public override Expression<Func<Book, bool>> ToExpression()
         {
-            return entity != null && (entity as Book)?.Genre == this._genre;
+            return book => book.Genre == _genre;
         }
     }
 }

@@ -5,18 +5,17 @@ using BookStore.Repository.Specifications;
 
 namespace BookStore.Repository.Books.Specifications
 {
-    public class PriceSpecification : Specification<Book>
+    public class DateSpecification:Specification<Book>
     {
-        private readonly decimal _price;
-        public PriceSpecification(int price)
+        private readonly DateTime _publishDate;
+        public DateSpecification(DateTime publishDate)
         {
-            this._price = price;
+            this._publishDate = publishDate;
         }
-
 
         public override Expression<Func<Book, bool>> ToExpression()
         {
-            return book => book.Price < _price;
+            return book => book.PublishDate == _publishDate;
         }
     }
 }

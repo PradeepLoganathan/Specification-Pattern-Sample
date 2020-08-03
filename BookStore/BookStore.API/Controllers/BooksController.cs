@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookStore.Domain;
 using BookStore.Domain.BooksAggregate;
 using BookStore.Domain.CatalogueAggregate;
-using BookStore.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.API.Controllers
@@ -14,7 +11,7 @@ namespace BookStore.API.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public BooksController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -22,20 +19,14 @@ namespace BookStore.API.Controllers
 
         // GET: api/<Books>
         [HttpGet]
-        public async Task<IEnumerable<Book>> Get()
+        public async Task<IReadOnlyList<Book>> Get([FromQuery] string genre)
         {
-            return await _unitOfWork.Books.GetAll();
-        }
-
-        [HttpGet]
-        public IEnumerable<Book> GetByGenre([FromQuery] string Genre)
-        {
-            return _unitOfWork.Books.GetBooksByGenre(Genre);
+            return await _unitOfWork.Books.GetBooksByGenre(genre);
         }
 
         // GET api/<Books>/5
         [HttpGet("{id}")]
-        public async Task<Book> Get(int id)
+        public async Task<Book> GetById(int id)
         {
             return await _unitOfWork.Books.Get(id);
         }
@@ -50,7 +41,7 @@ namespace BookStore.API.Controllers
                 Genre = "Technology",
                 Author = "Charles Petzold",
                 Title = "Programming Windows 5th Edition",
-                Price = 30.00,
+                Price = 30.00M,
                 Publisher = "Microsoft Press"
             };
 
